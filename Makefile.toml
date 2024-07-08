@@ -1,0 +1,57 @@
+[tasks.run]
+description = "Runs cargo execute"
+command = "cargo"
+args = ["run"]
+
+[tasks.watch]
+description = "Runs development watch"
+command = "cargo"
+install_crate = "cargo-watch"
+args = ["watch", "-w", "src", "-x", "run"]
+
+[tasks.format]
+description = "Runs the cargo rustfmt plugin format"
+category = "Lint"
+install_crate = "rustfmt"
+command = "cargo"
+args = ["fmt", "--", "--emit=files"]
+
+[tasks.check]
+description = "Runs cargo check."
+category = "Lint"
+command = "cargo"
+args = ["check"]
+
+[tasks.clippy]
+description = "Runs clippy code linter."
+category = "Lint"
+install_crate = "cargo-clippy"
+command = "cargo"
+#args = ["clippy", "--", "-D", "warnings"]
+args = ["clippy"]
+
+[tasks.audit]
+install_crate = "cargo-audit"
+command = "cargo"
+args = ["audit"]
+
+[tasks.test]
+description = "Runs all available tests."
+command = "cargo"
+args = ["test"]
+
+[tasks.build]
+description = "Runs the rust debug compiler."
+command = "cargo"
+args = ["build"]
+
+[tasks.build-release]
+description = "Runs the rust release compiler."
+command = "cargo"
+args = ["build", "--release"]
+
+[tasks.lint]
+dependencies = [
+  "format",
+  'clippy'
+]

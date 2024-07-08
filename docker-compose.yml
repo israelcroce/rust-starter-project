@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    container_name: "rust-starter-project"
+    entrypoint: ./entrypoint.sh
+    volumes:
+      - .:/app
